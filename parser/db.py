@@ -7,6 +7,7 @@ DB_NAME = os.getenv('DB_NAME', 'currencies_db')
 DB_USER = os.getenv('DB_USER', 'user')
 DB_PASS = os.getenv('DB_PASS', 'pass')
 
+
 def get_connection():
     return psycopg2.connect(
         host=DB_HOST,
@@ -16,10 +17,9 @@ def get_connection():
         password=DB_PASS
     )
 
+
 def insert_rates(data):
-    """
-    Вставляет записи в таблицу currencies, пропуская дубликаты.
-    """
+    """Вставляет записи в таблицу currencies, пропуская дубликаты."""
     if not data:
         print("Нет данных для вставки.")
         return
