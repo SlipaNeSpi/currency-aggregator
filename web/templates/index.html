@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Курсы валют</title>
+    <style>
+        table { border-collapse: collapse; width: 60%; margin: 20px auto; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        .nav { text-align: center; margin-top: 30px; }
+        .nav a { margin: 0 15px; }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">Агрегатор курсов валют</h1>
+    <table>
+        <tr>
+            <th>Источник</th>
+            <th>Валюта</th>
+            <th>Курс</th>
+            <th>Дата</th>
+        </tr>
+        {% for row in rows %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+        </tr>
+        {% endfor %}
+        {% if not rows %}
+        <tr><td colspan="4">Нет данных</td></tr>
+        {% endif %}
+    </table>
+    <div class="nav">
+        <a href="/pgadmin">Администрирование БД (pgAdmin)</a> |
+        <a href="/metabase">Аналитика (Metabase)</a>
+    </div>
+</body>
+</html>
