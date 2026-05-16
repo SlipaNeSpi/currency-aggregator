@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install parser dependencies
+      run: |
+        pip install -r parser/requirements.txt
+        pip install flake8
+
+    - name: Lint parser code
+      run: flake8 parser --count --max-line-length=120 --statistics
+
+    - name: Install web dependencies
+      run: |
+        pip install -r web/requirements.txt
+        pip install flake8
+
+    - name: Lint web code
+      run: flake8 web --count --max-line-length=120 --statistics
+
+    - name: Test imports (optional)
+      run: |
+        python -c "import sys; sys.path.append('parser'); import parser, normalizer, db; print('Parser imports OK')"
+        python -c "import sys; sys.path.append('web'); import app; print('Web imports OK')"
+
+    - name: Run tests
+      run: |
+        pip install pytest
+        pytest tests/
