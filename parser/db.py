@@ -40,3 +40,4 @@ def insert_rates(data):
     finally:
         cur.close()
         conn.close()
+        

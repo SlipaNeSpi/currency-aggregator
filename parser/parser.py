@@ -81,3 +81,4 @@ if __name__ == '__main__':
     print(f"Получено записей: {len(clean)}")
     insert_rates(clean)
     print("Готово.")
+    
