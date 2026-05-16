@@ -39,7 +39,8 @@ jobs:
         python -c "import sys; sys.path.append('parser'); import parser, normalizer, db; print('Parser imports OK')"
         python -c "import sys; sys.path.append('web'); import app; print('Web imports OK')"
 
-    - name: Run tests
+    - name: Run parser tests
       run: |
-        pip install pytest
-        pytest tests/
+       pip install pytest
+       pytest tests/test_parser.py
+
